@@ -1,0 +1,77 @@
+<html>
+<head>
+    
+    <title>Megabytes to Terabytes Converter</title>
+    <style>
+        * {
+            font-size: 30px;
+            font-family: Century;
+            padding: 10px;
+        }
+
+        body {
+            background-image: url('calsi.JPG');
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        result {
+            font-size: 30px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+    <script>
+        let convert = () => {
+            event.preventDefault();
+            let num = document.getElementById("num");
+            let result = document.getElementById("result");
+
+            if (num.value === "") {
+                alert("Input is empty");
+                result.innerHTML = "";
+                num.focus();
+                return;
+            }
+
+            let n = parseFloat(num.value);
+
+            if (isNaN(n) || n < 0 || n > 10000000) {
+                alert("Please enter a valid positive number within the allowed range");
+                result.innerHTML = "";
+		num.value = "";
+                num.focus();
+                return;
+            }
+
+            let res = n / (1024 * 1024);
+            let msg = `Terabytes: ${res.toFixed(6)}`;
+            result.innerHTML = msg;
+        }
+    </script>
+</head>
+<body>
+    <center>
+        <h1>Megabytes to Terabytes Converter</h1>
+        <form onsubmit="convert(event)">
+            <label for="num">Enter MB:</label>
+            <input type="number" step="any" placeholder="Enter MB" id="num" />
+            <br/><br/>
+            <input type="submit" value="Convert"/>
+            <br/><br/>
+        </form>
+        <div id="result"></div>
+    </center>
+</body>
+</html>
